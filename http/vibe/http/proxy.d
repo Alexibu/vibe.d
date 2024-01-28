@@ -187,6 +187,8 @@ HTTPServerRequestDelegateS proxyRequest(HTTPProxySettings settings)
 				res.writeVoidBody();
 				return;
 			}
+			foreach(n,v;cres.headers.byKeyValue)
+				writefln("Header %s %s",n,v);
 
 			// enforce compatibility with HTTP/1.0 clients that do not support chunked encoding
 			// (Squid and some other proxies)
