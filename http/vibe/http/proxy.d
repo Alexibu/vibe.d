@@ -194,7 +194,7 @@ HTTPServerRequestDelegateS proxyRequest(HTTPProxySettings settings)
 				// copy all headers that may pass from upstream to client
 				foreach (n, ref v; cres.headers.byKeyValue)
 					if (n !in non_forward_headers_map)
-						res.headers[n] = v;
+						res.headers.addField(n,v);
 
 				if ("Transfer-Encoding" in res.headers) res.headers.remove("Transfer-Encoding");
 				auto content = cres.bodyReader.readAll(1024*1024);
